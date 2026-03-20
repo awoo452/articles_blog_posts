@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.3] - 2026-03-20
+### Fixed
+- Added system test scaffolding so `test:system` runs in CI.
+- Added a basic system test that hits the articles landing page.
+
 ## [0.0.2] - 2026-03-20
 ### Fixed
 - Adjusted array literal spacing to satisfy the RuboCop `Layout/SpaceInsideArrayLiteralBrackets` rule.
