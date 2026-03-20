@@ -12,9 +12,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "articles#index"
 
-  resources :articles, only: [:index, :show]
+  resources :articles, only: [ :index, :show ]
 
   namespace :admin do
-    resources :articles, except: [:show]
+    resources :articles, except: [ :show ]
   end
 end
