@@ -1,0 +1,37 @@
+<% content_for :title, "Manage Articles" %>
+
+<h1>Manage Articles</h1>
+
+<p><%= link_to "New article", new_admin_article_path %></p>
+
+<% if @articles.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Type</th>
+        <th>Status</th>
+        <th>Published</th>
+        <th>Updated</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @articles.each do |article| %>
+        <tr>
+          <td><%= article.title %></td>
+          <td><%= article.content_type.humanize %></td>
+          <td><%= article.status.humanize %></td>
+          <td><%= article.published_at&.to_date %></td>
+          <td><%= article.updated_at.to_date %></td>
+          <td>
+            <%= link_to "Edit", edit_admin_article_path(article) %>
+            <%= button_to "Delete", admin_article_path(article), method: :delete, form: { data: { turbo_confirm: "Delete this article?" } } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No articles yet.</p>
+<% end %>

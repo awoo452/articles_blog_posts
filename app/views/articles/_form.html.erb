@@ -1,0 +1,61 @@
+<%= form_with(model: [:admin, article]) do |form| %>
+  <% if article.errors.any? %>
+    <div>
+      <h2><%= pluralize(article.errors.count, "error") %> prevented this article from saving:</h2>
+      <ul>
+        <% article.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :summary %><br>
+    <%= form.text_area :summary, rows: 3 %>
+  </div>
+
+  <div>
+    <%= form.label :body %><br>
+    <%= form.text_area :body, rows: 12 %>
+  </div>
+
+  <div>
+    <%= form.label :content_type %><br>
+    <%= form.select :content_type, Article.content_types.keys.map { |key| [key.humanize, key] } %>
+  </div>
+
+  <div>
+    <%= form.label :status %><br>
+    <%= form.select :status, Article.statuses.keys.map { |key| [key.humanize, key] } %>
+  </div>
+
+  <div>
+    <%= form.label :published_at %><br>
+    <%= form.datetime_local_field :published_at %>
+  </div>
+
+  <div>
+    <%= form.label :slug %><br>
+    <%= form.text_field :slug, placeholder: "Auto-generated if blank" %>
+  </div>
+
+  <div>
+    <%= form.label :cover_image_key %><br>
+    <%= form.text_field :cover_image_key %>
+  </div>
+
+  <div>
+    <%= form.label :cover_image_alt %><br>
+    <%= form.text_field :cover_image_alt %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

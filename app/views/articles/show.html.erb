@@ -1,0 +1,23 @@
+<% content_for :title, @article.title %>
+
+<p><%= link_to "Back to articles", articles_path %></p>
+
+<h1><%= @article.title %></h1>
+<p>
+  <strong><%= @article.content_type.humanize %></strong>
+  ·
+  <%= (@article.published_at || @article.created_at).to_date.to_s %>
+</p>
+
+<% if @article.cover_image_key.present? %>
+  <figure>
+    <%= image_tag @article.cover_image_key, alt: @article.cover_image_alt.presence || @article.title %>
+    <% if @article.cover_image_alt.present? %>
+      <figcaption><%= @article.cover_image_alt %></figcaption>
+    <% end %>
+  </figure>
+<% end %>
+
+<p><%= @article.summary %></p>
+
+<%= simple_format(@article.body) %>
